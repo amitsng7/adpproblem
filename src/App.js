@@ -27,10 +27,14 @@ class App extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     if(this.state.selectProblem === "onCall") {
-        const obj = JSON.parse(this.state.text1);
-        let output = this.buildFlatObject(obj);
-        this.setState({output: "Please check console!"})
-        console.log(output);
+        if(this.state.text1 === '') {
+            this.setState({output: "Please enter valid JSON object"})
+        } else {
+            const obj = JSON.parse(this.state.text1);
+            let output = this.buildFlatObject(obj);
+            this.setState({output: "Please check console!"})
+            console.log(output);
+        }
     } else if(this.state.selectProblem === "homeAssign") {
         this.buildCommonStringInArray();
     }
